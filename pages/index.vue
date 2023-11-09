@@ -1,5 +1,6 @@
 <template>
   <div>
-  We are in the index page
+    <Header />
+    <Content />
   </div>
 </template>
