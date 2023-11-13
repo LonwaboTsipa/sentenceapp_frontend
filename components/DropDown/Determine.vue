@@ -9,7 +9,6 @@
     const detemineList = ref<string[]>([]);
     const name = 'detemine';
     const updateValueClicked = (value: string) => {
-        console.log('value noun',value);
         wordStore.updateDeterminer(value);
     }
 

@@ -9,7 +9,6 @@
     const adjectiveList = ref<string[]>([]);
     const name = 'adjective';
     const updateValueClicked = (value: string) => {
-        console.log('value noun',value);
         wordStore.updateAdjective(value);
     }
 

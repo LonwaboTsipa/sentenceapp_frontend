@@ -9,7 +9,6 @@
     const adverbList = ref<string[]>([]);
     const name = 'adverb';
     const updateValueClicked = (value: string) => {
-        console.log('value noun',value);
         wordStore.updateAdverb(value);
     }
 

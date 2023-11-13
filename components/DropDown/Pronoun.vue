@@ -10,7 +10,6 @@
     const pronounList = ref<string[]>([]);
     const name = 'pronoun';
     const updateValueClicked = (value: string) => {
-        console.log('value noun',value);
         wordStore.updatePronoun(value);
     }
 

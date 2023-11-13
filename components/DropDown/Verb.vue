@@ -9,7 +9,6 @@
     const verbList = ref<string[]>([]);
     const name = 'verb';
     const updateValueClicked = (value: string) => {
-        console.log('value noun',value);
         wordStore.updateVerb(value);
     }
 

@@ -9,7 +9,6 @@
     const nounList = ref<string[]>([]);
     const name = 'noun';
     const updateValueClicked = (value: string) => {
-        console.log('value noun',value);
         wordStore.updateNoun(value);
     }
 

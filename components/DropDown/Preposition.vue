@@ -9,7 +9,6 @@
     const prepositionList = ref<string[]>([]);
     const name = 'preposition';
     const updateValueClicked = (value: string) => {
-        console.log('value noun',value);
         wordStore.updatePreposition(value);
     }
 

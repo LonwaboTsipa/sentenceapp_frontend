@@ -11,6 +11,9 @@
             <DropDownPronoun />
             <DropDownExclamation />
         </div>
+        <div>
+            <SentenceView />
+        </div>
     </div>
 </template>
 

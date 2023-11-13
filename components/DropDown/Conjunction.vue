@@ -9,7 +9,6 @@
     const conjunctionList = ref<string[]>([]);
     const name = 'conjunction';
     const updateValueClicked = (value: string) => {
-        console.log('value noun',value);
         wordStore.updateConjunction(value);
     }
 

@@ -9,7 +9,6 @@
     const exclamationList = ref<string[]>([]);
     const name = 'exclamation';
     const updateValueClicked = (value: string) => {
-        console.log('value noun',value);
         wordStore.updateExclamation(value);
     }
 
