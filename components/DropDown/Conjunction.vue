@@ -1,13 +1,21 @@
 <template>
     <div>
-        <UIDropdown :words="words" :updateValueFunc="updateValueClicked" :dropdownName="name" />
+        <UIDropdown :words="conjunctionList" :updateValueFunc="updateValueClicked" :dropdownName="name" />
     </div>
 </template>
 
 <script setup lang="ts">
+    const wordStore = useWordStore();
+    const conjunctionList = ref<string[]>([]);
     const name = 'conjunction';
-    const words = ['one', 'two', 'three', 'four', 'five'];
     const updateValueClicked = (value: string) => {
         console.log('value noun',value);
+        wordStore.updateConjunction(value);
     }
+
+    watchEffect(() => {
+        if (wordStore.wordList) {
+            conjunctionList.value = wordStore.wordList.conjunction;
+        }
+    });
 </script>

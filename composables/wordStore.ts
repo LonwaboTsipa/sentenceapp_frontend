@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import type { WordListModel } from "~/models/WordListModel";
 
 const activeNoun = ref<string>('');
 const activeVerb = ref<string>('');
@@ -10,10 +11,11 @@ const activePronoun = ref<string>('');
 const activeExclamation = ref<string>('');
 const activeDeterminer = ref<string>('');
 const sentence = ref<string>('');
+const wordList = ref<WordListModel | null>(null);
 
 
 
-export const useWoordStore = defineStore('woordStore', () => {
+export const useWordStore = defineStore('wordStore', () => {
     return {
         async updateNoun(noun: string) {
             activeNoun.value = noun;
@@ -45,6 +47,16 @@ export const useWoordStore = defineStore('woordStore', () => {
         async updateSentence(value: string) {
             sentence.value = value;
         },
+        async clearSentence() {
+            sentence.value = '';
+        },
+        async getWordList() {
+            const {data} = await useFetch<WordListModel>('/api/GetWordList');
+            if (data.value) {
+                wordList.value = data.value;
+            }
+        },
+        wordList,
         activeNoun,
         activeVerb,
         activeAdjective,

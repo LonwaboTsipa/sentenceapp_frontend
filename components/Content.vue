@@ -15,7 +15,9 @@
 </template>
 
 <script setup lang="ts">
-   
+const wordStore = useWordStore();
+await wordStore.getWordList();
+
 </script>
 
 <style scoped>

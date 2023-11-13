@@ -1,14 +1,22 @@
 
 <template>
     <div>
-        <UIDropdown :words="words" :updateValueFunc="updateValueClicked" :dropdownName="name" />
+        <UIDropdown :words="pronounList" :updateValueFunc="updateValueClicked" :dropdownName="name" />
     </div>
 </template>
 
 <script setup lang="ts">
+    const wordStore = useWordStore();
+    const pronounList = ref<string[]>([]);
     const name = 'pronoun';
-    const words = ['one', 'two', 'three', 'four', 'five'];
     const updateValueClicked = (value: string) => {
         console.log('value noun',value);
+        wordStore.updatePronoun(value);
     }
+
+    watchEffect(() => {
+        if (wordStore.wordList) {
+            pronounList.value = wordStore.wordList.pronoun;
+        }
+    });
 </script>
