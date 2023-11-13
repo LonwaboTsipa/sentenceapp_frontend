@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
     const name = 'adjective';
-    const words = ['one', 'two', 'three', 'four', 'five'];
+    const words = ['one', 'two two two two twtot wt ', 'three', 'four', 'five'];
     const updateValueClicked = (value: string) => {
         console.log('value noun',value);
     }
