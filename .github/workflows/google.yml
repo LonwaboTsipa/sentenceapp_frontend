@@ -106,8 +106,7 @@ jobs:
       run: |-
         # Navigate to the root directory
         ls 
-        dir
-        cd sentenceapp_frontend
+        
 
         # Replace the image name in the k8s template
         ./kustomize edit set image us-central1-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
