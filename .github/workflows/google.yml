@@ -105,6 +105,8 @@ jobs:
     - name: Deploy
       run: |-
         # Navigate to the root directory
+        ls 
+        dir
         cd sentenceapp_frontend
 
         # Replace the image name in the k8s template
