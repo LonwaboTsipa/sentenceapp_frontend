@@ -46,7 +46,7 @@ jobs:
       with:
       #  token_format: 'access_token'
         workload_identity_provider: 'sentenceapp.svc.id.goog'
-        service_account: '490721937804-compute@developer.gserviceaccount.com'
+        service_account: 'lodz-5@sentenceapp.iam.gserviceaccount.com'
 
     # Alternative option - authentication via credentials json
     # - id: 'auth'
