@@ -15,5 +15,5 @@ spec:
       containers:
         - name: sentence-app
           image: gcr.io/sentenceapp/sentence-app
-         ports:
-          - containerPort: 3000
+          ports:
+            - containerPort: 3000
