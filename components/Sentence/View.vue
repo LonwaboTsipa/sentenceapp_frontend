@@ -2,22 +2,33 @@
     <div class="sentence-container">
         <textarea readonly v-model="sentence" rows="8" cols="50" placeholder="Select words to display a sentence here."></textarea>
         <button @click="submitSentecnce">Submit</button>
+        <div class="sentence" v-for="sentence in sentenceList" :key="sentence">
+            <p>{{ sentence }}</p>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
     const wordStore = useWordStore();
     const sentence = ref<string>('');
+    const sentenceList = ref<string[]>([]);
 
+    await wordStore.getSentenceList();
+    
     watchEffect(() => {
         if (wordStore.sentence) {
             sentence.value = wordStore.sentence;
         }
+
+        if (wordStore.sentenceList) {
+            sentenceList.value = wordStore.sentenceList;
+        }
     });
 
-    const submitSentecnce = () => {
+    const submitSentecnce = async () => {
         if (sentence.value.trim() !== '') {
-            wordStore.submitSentence(sentence.value);
+            await wordStore.submitSentence(sentence.value);
+            sentence.value = '';
         }
     }
 </script>
@@ -50,5 +61,11 @@
         margin: 20px 0 0 0;
         border-radius: 10px;
         cursor: pointer;
+    }
+
+
+    .sentence {
+        font-size: 2em;
+        align-self: self-start;
     }
 </style>

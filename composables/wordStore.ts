@@ -11,6 +11,7 @@ const activePronoun = ref<string>('');
 const activeExclamation = ref<string>('');
 const activeDeterminer = ref<string>('');
 const sentence = ref<string>('');
+const sentenceList = ref<string[]>([]);
 const wordList = ref<WordListModel | null>(null);
 
 
@@ -71,28 +72,41 @@ export const useWordStore = defineStore('wordStore', () => {
             sentence.value = formattedSentence;
             activeDeterminer.value = determiner;
         },
-        // async updateSentence(value: string) {
-        //     sentence.value = value;
-        // },
         async clearSentence() {
             sentence.value = '';
         },
         async getWordList() {
-            const {data} = await useFetch<WordListModel>('/api/GetWordList');
+            const {data} = await useFetch<WordListModel>('/api/GetWordList',  {
+                method: 'GET'
+            });
             if (data.value) {
                 wordList.value = data.value;
             }
         },
-        async submitSentence(sentence: string) {
-            const {data} = await useFetch<string>('/api/SubmitSentence', {
+        async submitSentence(value: string) {
+            const {data} = await useFetch<string[]>('/api/SubmitSentence', {
                 method: 'POST',
-                body: JSON.stringify({sentence})
+                body: {
+                    sentence: value
+                }
             });
-            //Uncomment after return of new list
-            // if (data.value) {
-            //     sentence.value = data.value;
-            // }
+
+            if (data.value) {
+                sentenceList.value = data.value;
+                sentence.value = '';
+            }
         },
+        async getSentenceList() {
+            const {data} = await useFetch<string[]>('/api/GetSentenceList', {
+                method: 'GET',
+            });
+            if (data.value) {
+                sentenceList.value = data.value;
+            }
+
+            return data.value;
+        },
+        sentenceList,
         wordList,
         activeNoun,
         activeVerb,
