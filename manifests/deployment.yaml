@@ -1,19 +1,19 @@
 apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: sentence-app-deployment
-  spec:
-    replicas: 3
-    selector:
-      matchLabels:
+kind: Deployment
+metadata:
+  name: sentence-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sentence-app
+  template:
+    metadata:
+      labels:
         app: sentence-app
-    template:
-      metadata:
-        labels:
-          app: sentence-app
-      spec:
-        containers:
+    spec:
+      containers:
         - name: sentence-app
           image: gcr.io/sentenceapp/sentence-app
-          ports:
+         ports:
           - containerPort: 3000
