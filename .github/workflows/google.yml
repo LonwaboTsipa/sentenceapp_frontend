@@ -63,7 +63,7 @@ jobs:
       with:
         registry: us-central1-docker.pkg.dev
         username: _json_key
-        password: ${{ secrets.GAR_JSON_KEY }}
+        password: ${{ secrets.GCR_JSON_KEY }}
     
     # Get the GKE credentials so we can deploy to the cluster
     - name: Set up GKE credentials
