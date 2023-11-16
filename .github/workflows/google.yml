@@ -71,9 +71,9 @@ jobs:
       with:
         cluster_name: ${{ env.GKE_CLUSTER }}
         location: ${{ env.GKE_ZONE }}
-        workload_identity_pool: projects/${{ env.GCP_PROJECT_ID }}/locations/global/ins-lodz-5@sentenceapp.iam.gserviceaccount.com
-        workload_identity_provider: projects/${{ env.GCP_PROJECT_ID }}/locations/global/ins-sentenceapp.svc.id.goog
-        audience: //iam.googleapis.com/projects/$PROJECT_ID/locations/$GAR_LOCATION/workloadIdentityPools/lodz-5@sentenceapp.iam.gserviceaccount.com/providers/sentenceapp.svc.id.goog
+        # workload_identity_pool: projects/${{ env.GCP_PROJECT_ID }}/locations/global/ins-lodz-5@sentenceapp.iam.gserviceaccount.com
+        # workload_identity_provider: projects/${{ env.GCP_PROJECT_ID }}/locations/global/ins-sentenceapp.svc.id.goog
+        audience: //iam.googleapis.com/projects/${{ env.PROJECT_ID }}/locations/${{ GAR_LOCATION }}/workloadIdentityPools/lodz-5@sentenceapp.iam.gserviceaccount.com/providers/sentenceapp.svc.id.goog
 
     # Build the Docker image
     - name: Build
