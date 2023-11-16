@@ -110,7 +110,7 @@ jobs:
         ./kustomize edit set image LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
         
         # Build and apply the manifests
-        ./kustomize build manifests | kubectl apply -f -
+        ./kustomize build ./sentenceapp_frontend/manifests | kubectl apply -f -
         
         # Wait for the deployment to complete
         kubectl rollout status deployment/$DEPLOYMENT_NAME
