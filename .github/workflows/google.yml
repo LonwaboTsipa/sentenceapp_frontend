@@ -149,6 +149,10 @@ jobs:
       # run: ./kustomize build manifests | kubectl apply -f -
       run: kubectl apply -f manifests/deployment.yaml
 
+      - name: Deploy Step apply services
+      # run: ./kustomize build manifests | kubectl apply -f -
+      run: kubectl apply -f manifests/services.yaml
+
     - name: Get pods
       run: kubectl get pods 
 
