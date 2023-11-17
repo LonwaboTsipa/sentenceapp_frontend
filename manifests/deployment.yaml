@@ -17,3 +17,9 @@ spec:
           image: gcr.io/sentenceapp/sentence-app
           ports:
             - containerPort: 3000
+      strategy:
+        rollingUpdate:
+          maxUnavailable: 1
+          maxSurge: 1
+        type: RollingUpdate
+      progressDeadlineSeconds: 600 
