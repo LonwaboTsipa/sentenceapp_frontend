@@ -3,13 +3,7 @@ kind: Deployment
 metadata:
   name: sentence-app-third-deployment
 spec:
-  replicas: 33
-  # strategy:
-  #   rollingUpdate:
-  #     maxUnavailable: 1
-  #     maxSurge: 1
-  #   type: RollingUpdate
-  # progressDeadlineSeconds: 600 
+  replicas: 3
   selector:
     matchLabels:
       app: sentence-app
