@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sentence-app-third-deployment
+  name: sentence-app-fifth-deployment
 spec:
-  replicas: 3
+  replicas: 0
   selector:
     matchLabels:
       app: sentence-app
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: sentence-app
-          image: gcr.io/sentenceapp/sentence-app
+          image: us-central1-docker.pkg.dev/sentenceapp/sentenceappartifacts/sentenceapp:latest
           ports:
             - containerPort: 3000

@@ -21,7 +21,7 @@ env:
   GAR_LOCATION: us-central1 # TODO: update region of the Artifact Registry
   GKE_CLUSTER: cluster-3    # TODO: update to cluster name
   GKE_ZONE: us-central1-c   # TODO: update to cluster zone
-  DEPLOYMENT_NAME: sentence-app-third-deployment # TODO: update to deployment name
+  DEPLOYMENT_NAME: sentence-app-fifth-deployment # TODO: update to deployment name
   REPOSITORY: sentenceappartifacts # TODO: update to Artifact Registry docker repository
   IMAGE: sentenceapp
 
