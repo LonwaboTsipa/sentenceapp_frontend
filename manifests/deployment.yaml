@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sentence-app-second-deployment
+  name: sentence-app-third-deployment
 spec:
-  replicas: 10
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
-    type: RollingUpdate
-  progressDeadlineSeconds: 600 
+  replicas: 33
+  # strategy:
+  #   rollingUpdate:
+  #     maxUnavailable: 1
+  #     maxSurge: 1
+  #   type: RollingUpdate
+  # progressDeadlineSeconds: 600 
   selector:
     matchLabels:
       app: sentence-app
