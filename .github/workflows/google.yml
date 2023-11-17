@@ -146,8 +146,8 @@ jobs:
     #   run: kubectl cluster-info
 
     - name: Deploy Step 2
-      run: ./kustomize build manifests | kubectl apply -f -
-      # run: kubectl apply -f manifests/deployment.yaml
+      # run: ./kustomize build manifests | kubectl apply -f -
+      run: kubectl apply -f manifests/deployment.yaml
 
     - name: Get pods
       run: kubectl get pods 
