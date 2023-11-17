@@ -87,7 +87,7 @@ jobs:
     - name: 'auth'
       uses: 'google-github-actions/auth@v1'
       with:
-        credentials_json: '${{ secrets.gcp_credentials }}'
+        credentials_json: '${{ secrets.GCR_JSON_KEY }}'
 
     - name: 'get-credentials'
       uses: 'google-github-actions/get-gke-credentials@v1'
