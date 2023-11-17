@@ -108,18 +108,18 @@ jobs:
       run: |-
         docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
     #Set up kubectl
-    - name: Configure kubectl
-      run: |
-        gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --region ${{ env.GKE_ZONE }}
-        kubectl config set-context gke_${{ env.GCP_PROJECT_ID }}_${{ env.GKE_ZONE }}_${{ env.GKE_CLUSTER }}
-        kubectl config use-context gke_${{ env.GCP_PROJECT_ID }}_${{ env.GKE_ZONE }}_${{ env.GKE_CLUSTER }}
+    # - name: Configure kubectl
+    #   run: |
+    #     gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --region ${{ env.GKE_ZONE }}
+    #     kubectl config set-context gke_${{ env.GCP_PROJECT_ID }}_${{ env.GKE_ZONE }}_${{ env.GKE_CLUSTER }}
+    #     kubectl config use-context gke_${{ env.GCP_PROJECT_ID }}_${{ env.GKE_ZONE }}_${{ env.GKE_CLUSTER }}
  
 
     # Set up kustomize
-    # - name: Set up Kustomize
-    #   run: |-
-    #     curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
-    #     chmod u+x ./kustomize
+    - name: Set up Kustomize
+      run: |-
+        curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
+        chmod u+x ./kustomize
     # Deploy the Docker image to the GKE cluster
     # - name: Deploy
     #   run: |-
@@ -136,8 +136,8 @@ jobs:
     #     # Get information about the deployed services
     #     kubectl get services -o wide
 
-    # - name: Deploy Step 1
-    #   run: ./kustomize edit set image us-central1-docker.pkg.dev/sentenceapp/sentenceappartifacts/sentenceapp:TAG=us-central1-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
+    - name: Deploy Step 1
+      run: ./kustomize edit set image us-central1-docker.pkg.dev/sentenceapp/sentenceappartifacts/sentenceapp:TAG=us-central1-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
 
     - name: Check Kubernetes Context
       run: kubectl config current-context
