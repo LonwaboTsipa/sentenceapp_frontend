@@ -29,7 +29,8 @@ jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
-    environment: production
+    # environment: production
+    timeout-minutes: 20
 
     permissions:
       contents: 'read'
@@ -102,21 +103,30 @@ jobs:
         curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
         chmod u+x ./kustomize
     # Deploy the Docker image to the GKE cluster
-    - name: Deploy
-      run: |-
-        # Navigate to the root directory
-        ls 
+    # - name: Deploy
+    #   run: |-
+    
+    #     # Replace the image name in the k8s template
+    #     ./kustomize edit set image us-central1-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
         
+    #     # Build and apply the manifests
+    #     ./kustomize build manifests | kubectl apply -f -
+        
+    #     # Wait for the deployment to complete
+    #     kubectl rollout status deployment/$DEPLOYMENT_NAME
+        
+    #     # Get information about the deployed services
+    #     kubectl get services -o wide
 
-        # Replace the image name in the k8s template
-        ./kustomize edit set image us-central1-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
-        
-        # Build and apply the manifests
-        ./kustomize build manifests | kubectl apply -f -
-        
-        # Wait for the deployment to complete
-        kubectl rollout status deployment/$DEPLOYMENT_NAME
-        
-        # Get information about the deployed services
-        kubectl get services -o wide
+    - name: Deploy Step 1
+      run: ./kustomize edit set image us-central1-docker.pkg.dev/sentenceapp/sentenceappartifacts/sentenceapp:TAG=us-central1-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
+
+    - name: Deploy Step 2
+      run: ./kustomize build manifests | kubectl apply -f -
+
+    - name: Wait for Deployment
+      run: kubectl rollout status deployment/$DEPLOYMENT_NAME
+
+    - name: Get Service Info
+      run: kubectl get services -o wide
 
