@@ -110,9 +110,9 @@ jobs:
     #Set up kubectl
     - name: Configure kubectl
       run: |
-        gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --region ${{ env.GAR_LOCATION }}
-        kubectl config set-context gke_${{ env.GCP_PROJECT_ID }}_${{ env.GAR_LOCATION }}_${{ env.GKE_CLUSTER }}
-        kubectl config use-context gke_${{ env.GCP_PROJECT_ID }}_${{ env.GAR_LOCATION }}_${{ env.GKE_CLUSTER }}
+        gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --region ${{ env.GKE_ZONE }}
+        kubectl config set-context gke_${{ env.GCP_PROJECT_ID }}_${{ env.GKE_ZONE }}_${{ env.GKE_CLUSTER }}
+        kubectl config use-context gke_${{ env.GCP_PROJECT_ID }}_${{ env.GKE_ZONE }}_${{ env.GKE_CLUSTER }}
  
 
     # Set up kustomize
