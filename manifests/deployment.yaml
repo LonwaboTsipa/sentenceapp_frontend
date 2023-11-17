@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: sentence-app-deployment
 spec:
-  replicas: 3
+  replicas: 10
   strategy:
     rollingUpdate:
       maxUnavailable: 1
