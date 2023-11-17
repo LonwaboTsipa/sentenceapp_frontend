@@ -4,6 +4,12 @@ metadata:
   name: sentence-app-deployment
 spec:
   replicas: 3
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+    type: RollingUpdate
+  progressDeadlineSeconds: 600 
   selector:
     matchLabels:
       app: sentence-app
@@ -17,9 +23,3 @@ spec:
           image: gcr.io/sentenceapp/sentence-app
           ports:
             - containerPort: 3000
-      strategy:
-        rollingUpdate:
-          maxUnavailable: 1
-          maxSurge: 1
-        type: RollingUpdate
-      progressDeadlineSeconds: 600 
