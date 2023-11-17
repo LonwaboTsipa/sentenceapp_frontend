@@ -121,6 +121,13 @@ jobs:
     - name: Deploy Step 1
       run: ./kustomize edit set image us-central1-docker.pkg.dev/sentenceapp/sentenceappartifacts/sentenceapp:TAG=us-central1-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
 
+    - name: Check Kubernetes Context
+      run: kubectl config current-context
+      # kubectl config get-contexts
+    
+    - name: Check Kubernetes Cluster Info
+      run: kubectl cluster-info
+      
     - name: Deploy Step 2
       run: ./kustomize build manifests | kubectl apply -f -
 
