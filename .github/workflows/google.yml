@@ -67,23 +67,22 @@ jobs:
         password: ${{ secrets.GCR_JSON_KEY }}
     
     # Get the GKE credentials so we can deploy to the cluster
+    # - name: Set up GKE credentials
+    #   uses: google-github-actions/get-gke-credentials@v0
+    #   with:
+    #     cluster_name: ${{ env.GKE_CLUSTER }}
+    #     location: ${{ env.GKE_ZONE }}
+    #     project_id: ${{ env.GCP_PROJECT_ID }}
+    #     use_internal_ip: true
+    #     credentials: ${{ secrets.GCR_JSON_KEY }}
+    #     context_name: gke_${{ env.GCP_PROJECT_ID }}_${{ env.GKE_CLUSTER }}_${{ github.run_id }}
+
     - name: Set up GKE credentials
-      uses: google-github-actions/get-gke-credentials@v0
+      uses: google-github-actions/auth@v0
       with:
-        # cluster_name: ${{ env.GKE_CLUSTER }}
-        # location: ${{ env.GKE_ZONE }}
-        # workload_identity_pool: projects/${{ env.GCP_PROJECT_ID }}/locations/global/ins-<lodz-5@sentenceapp.iam.gserviceaccount.com>
-        # workload_identity_provider: projects/${{ env.GCP_PROJECT_ID }}/locations/global/ins-sentenceapp.svc.id.goog
-        # audience: projects/${{ env.GCP_PROJECT_ID }}/locations/global/ins-<lodz-5@sentenceapp.iam.gserviceaccount.com>
-        # workload_identity_pool: projects/${{ env.GCP_PROJECT_ID }}/locations/global/ins-lodz-5@sentenceapp.iam.gserviceaccount.com
-        # workload_identity_provider: projects/${{ env.GCP_PROJECT_ID }}/locations/global/ins-sentenceapp.svc.id.goog
-        # audience: //siam.googleapis.com/projects/${{ env.PROJECT_ID }}/locations/${{ env.GAR_LOCATION }}/workloadIdentityPools/lodz-5@sentenceapp.iam.gserviceaccount.com/providers/sentenceapp.svc.id.goog
-        cluster_name: ${{ env.GKE_CLUSTER }}
-        location: ${{ env.GKE_ZONE }}
-        project_id: ${{ env.GCP_PROJECT_ID }}
-        use_internal_ip: true
         credentials: ${{ secrets.GCR_JSON_KEY }}
-        context_name: gke_${{ env.GCP_PROJECT_ID }}_${{ env.GKE_CLUSTER }}_${{ github.run_id }}
+        project_id: ${{ env.GCP_PROJECT_ID }}
+        export_default_credentials: true
 
     # Build the Docker image
     - name: Build
