@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sentence-app-fifth-deployment
+  name: sentence-app-six-deployment
 spec:
   replicas: 0
   selector:
